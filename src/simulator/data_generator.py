@@ -8,6 +8,9 @@ import time
 import json
 import numpy as np
 import os
+#Get the connection to your event hub topic and set it to an environment variable
+# You also need to install pip install azure-eventhub
+#Run this program as python data_generator.py --duration 1000  
 con_str=os.getenv("EHCONN")
 eh_name= "sales_orders"
 def parse_args():
@@ -55,7 +58,7 @@ if __name__ == "__main__":
     duration = args.duration
     execution_time=0
     batch =0
-    sales_df = pd.read_csv("../data/sales_data_sample.csv",encoding='Latin-1')
+    sales_df = pd.read_csv("../../data/sales_data_sample.csv",encoding='Latin-1')
     #change column names for mapping later
     mapping ={"ORDERNUMBER":"ORDER_NUMBER","QUANTITYORDERED":"QTY_ORDERED","PRICEEACH":"PRICE_EACH","ORDERLINENUMBER":"ORDER_LINE"}
     sales_df.rename(columns = mapping, inplace=True)
